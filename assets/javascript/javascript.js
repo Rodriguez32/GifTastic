@@ -22,15 +22,21 @@ $("button").on("click", function() {
 
         var birdImage = $("<img>");
 
-        birdDiv.attr("src", results[i].images.fixed_height.url);
-        console.log(results[i]);
-        
+        birdImage.attr("src", results[i].images.fixed_height.url);
+        console.log(birdImage);
+        birdImage.attr("data-still",results[i].images.fixed_height_small_still.url); // still image
+        birdImage.attr("data-animate",results[i].images.fixed_height_small.url); // animated image
+        birdImage.attr("data-state", "still"); // set the image state
+
+
         birdDiv.append(p);
         birdDiv.append(birdImage);
 
-        $("#gifs-go-here").append(birdDiv);      
+        $("#gifs-go-here").append(birdDiv);   
                 
 }
+
+        
         });
         
 });

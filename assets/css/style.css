@@ -1,0 +1,32 @@
+body {
+    background: url("../images/flowers-meadow-wood-forest.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    text-align: center;
+}
+
+.btn {
+    margin: 3px;
+    background-color: grey;
+}
+
+.container {
+    padding: 20px;
+    
+}
+
+
+
+#gif-goes-here {
+    float: left;
+    margin: 3px;
+}
+
+#footer {
+    clear: both;
+    margin-top: 40px;
+    text-align: center;
+}
