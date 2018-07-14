@@ -1,13 +1,16 @@
+body {
+    background: url("../images/flowers-meadow-wood-forest.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
 
 
 h1 {
     text-align: center;
+    font-family: fantasy;
 }
 
 
-.gifDiv {
-    float: left;
-    margin: 3px;
-}
+
 
 

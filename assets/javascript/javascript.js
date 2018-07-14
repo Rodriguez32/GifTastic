@@ -8,9 +8,9 @@ for (var i = 0; i < topics.length; i++) {
         var button = $(" <button> " + topics[i] + " <button> ")
        $("#showButton").append(button);
 }
-
+// function only blinks on page but is not running
 function addNewButton() {
-        $("addGif").on("click", function() {
+        $("showButton").on("click", function() {
                   var bird = $("#topicInput").val().trim();
                   if (bird == ""){
                           return false;
@@ -22,7 +22,8 @@ function addNewButton() {
         });
         
 }
-
+// function is not responding. However when I first started project I made buttons on html
+// Then the ajax call like below. And that had my giphs showing on my page. 
 function showGifs(){
         var birds = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -48,7 +49,13 @@ function showGifs(){
 
                         birdImage.attr("src", results[i].images.fixed_height.url);
                         console.log(birdImage);
-                        
+                        //still image and animated image
+                        birdImage.attr("data-still",resutls[i].images.fixed_height_small_still.url);
+                        birdImage.attr("data-animate",results[i].images.fixed_height_small.url);
+                        birdImage.attr("data-state", "still");
+                        birdImage.addClass("image");
+                        birdDiv.append(birdImage);
+
                         birdDiv.append(p);
                         birdDiv.append(birdImage);
 
@@ -59,6 +66,22 @@ function showGifs(){
         })
 
 }
+//calling the functions
+addNewButton();
+showGifs();
+
+//event listeners
+$(document).on("click", "topics", showGifs);
+$(document).on("click", ".image", function () {
+        var state = (this).attr("data-state");
+        if (state == "still") {
+                $(this).attr("src", $(this).data("animate"));
+                $(this).attr("data-state", "animate");
+        } else{
+                $(this).attr("src", $(this).data("still"));
+                $(this).attr("data-state", "still");
+        }
+});
 
 
 
