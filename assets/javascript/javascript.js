@@ -10,6 +10,7 @@ for (var i = 0; i < topics.length; i++) {
 }
 // function only blinks on page but is not running
 function addNewButton() {
+        console.log(addNewButton);
         $("showButton").on("click", function() {
                   var bird = $("#topicInput").val().trim();
                   if (bird == ""){
@@ -26,19 +27,18 @@ function addNewButton() {
 // Then the ajax call like below. And that had my giphs showing on my page. 
 function showGifs(){
         var birds = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        birds + "&api_key=IzkxH5nTOLLsfaxktzTqrDHHsNaWopf9&limit=10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + birds
+         + "&api_key=IzkxH5nTOLLsfaxktzTqrDHHsNaWopf9&limit=10";
         console.log(queryURL);
 
         $.ajax({
                 url:queryURL,
                 method: "GET"
         })
-
         .then(function(response) {
         console.log(response);        
                 
-                var results = response.data;
+        var results = response.data;
 
                 for (var i = 0; i < results.length; i++) {
                         var birdDiv = $("<div>");
@@ -46,11 +46,12 @@ function showGifs(){
                         var p = $("<p>").text("Rating: " + rating);
 
                         var birdImage = $("<img>");
-
-                        birdImage.attr("src", results[i].images.fixed_height.url);
+                        
+                        // If I activate this it shows gifs but not the birds ones
+                        //birdImage.attr("src", results[i].images.fixed_height.url);
                         console.log(birdImage);
                         //still image and animated image
-                        birdImage.attr("data-still",resutls[i].images.fixed_height_small_still.url);
+                        birdImage.attr("data-still",results[i].images.fixed_height_still.url);
                         birdImage.attr("data-animate",results[i].images.fixed_height_small.url);
                         birdImage.attr("data-state", "still");
                         birdImage.addClass("image");
@@ -86,7 +87,6 @@ $(document).on("click", ".image", function () {
 
 
 });
-
 
 
 
